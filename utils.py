@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 
 def load_ibm_data(filename: str) -> pd.DataFrame:
@@ -22,3 +23,20 @@ def load_soil_data(filename: str) -> pd.DataFrame:
     except Exception as e:
         print(f"Erreur : {e}")
         return None
+
+
+def load_transform(filename):
+    """
+    Charge les données et applique la transformation pour rendre la série stationnaire.
+    """
+    # Lecture du format spécifique Date,High
+    df = load_ibm_data(filename)
+    dates = df.Date.values
+    prix = df.High.values
+
+    # Transformation logarithmique
+    log_prix = np.log(prix)
+    # On retire la tendance
+    data_stat = np.diff(log_prix)
+
+    return dates, prix, data_stat
