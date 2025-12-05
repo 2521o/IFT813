@@ -123,6 +123,7 @@ class KrigingModel:
         lags = []
         gammas = []
 
+        # Discretisation h
         for i in range(len(bins) - 1):
             # On prend toutes les paires qui sont dans cet intervalle de distance
             mask = (dists >= bins[i]) & (dists < bins[i + 1])

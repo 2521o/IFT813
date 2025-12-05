@@ -49,7 +49,6 @@ def modele_spherique(h, nugget, sill, range_val):
     """
     Modèle Sphérique
     """
-    # CORRECTION : On s'assure que h est un array mais on garde sa forme (2D ou 1D)
     h_arr = np.asarray(h)
     val = np.zeros_like(h_arr)
 
@@ -61,10 +60,9 @@ def modele_spherique(h, nugget, sill, range_val):
     val[~mask] = sill
 
     # Correction mathématique à l'origine (gamma(0)=0)
-    # Mais le nugget s'applique dès h > 0
     val[h_arr == 0] = 0
 
-    return val  # On renvoie la matrice telle quelle (pas de flatten!)
+    return val  # On renvoie la matrice telle quelle
 
 
 def modele_exponentiel(h, nugget, sill, range_val):
@@ -72,6 +70,6 @@ def modele_exponentiel(h, nugget, sill, range_val):
     Modèle Exponentiel
     """
     h_arr = np.asarray(h)
-    val = nugget + (sill - nugget) * (1 - np.exp(-3 * h_arr / range_val))
+    val = nugget + (sill - nugget) * (1 - np.exp(-h_arr / range_val))
     val[h_arr == 0] = 0
     return val
