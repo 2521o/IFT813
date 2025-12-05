@@ -53,10 +53,6 @@ def modele_spherique(h, nugget, sill, range_val):
     h_arr = np.asarray(h)
     val = np.zeros_like(h_arr)
 
-    # On évite la division par zéro
-    if range_val < 1e-9:
-        range_val = 1e-9
-
     mask = h_arr <= range_val
     # Formule du cours appliquée élément par élément
     val[mask] = nugget + (sill - nugget) * (
