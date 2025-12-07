@@ -85,9 +85,7 @@ class ModeleAR:
 
 class KrigingModel:
     def __init__(self, type_modele="spherical"):
-        self.func = (
-            modele_spherique if type_modele == "spherical" else modele_exponentiel
-        )
+        self.func = model_spherique if type_modele == "spherical" else model_gaussien
         self.params = None  # [Nugget, Sill, Range]
         self.coeffs_trend = None
         self.X_train = None
