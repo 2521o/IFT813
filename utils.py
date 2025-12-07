@@ -45,9 +45,9 @@ def load_transform(filename):
     return dates, prix, data_stat
 
 
-def modele_spherique(h, nugget, sill, range_val):
+def model_spherique(h, nugget, sill, range_val):
     """
-    Modèle Sphérique
+    Modèle sphérique
     """
     h_arr = np.asarray(h)
     val = np.zeros_like(h_arr)
@@ -65,9 +65,9 @@ def modele_spherique(h, nugget, sill, range_val):
     return val  # On renvoie la matrice telle quelle
 
 
-def modele_exponentiel(h, nugget, sill, range_val):
+def model_gaussien(h, nugget, sill, range_val):
     """
-    Modèle Exponentiel
+    Modèle gaussien
     """
     h_arr = np.asarray(h)
     val = nugget + (sill - nugget) * (1 - np.exp(-h_arr / range_val))

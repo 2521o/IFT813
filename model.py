@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from utils import load_ibm_data, load_transform, modele_exponentiel, modele_spherique
+from utils import model_gaussien, model_spherique
 from scipy.spatial.distance import pdist, squareform
 from scipy.optimize import curve_fit
 
@@ -96,7 +96,7 @@ class KrigingModel:
 
     def fit(self, X, Y, pH):
         """
-        Calcule tout ce qu'il faut : Tendance + Variogramme + Paramètres
+        Tendance + Variogramme + Paramètres
         """
         self.X_train, self.Y_train = X, Y
         N = len(X)
