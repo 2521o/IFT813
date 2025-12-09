@@ -125,7 +125,7 @@ class KrigingModel:
         for i in range(len(bins) - 1):
             # On prend toutes les paires qui sont dans cet intervalle de distance
             mask = (dists >= bins[i]) & (dists < bins[i + 1])
-            if np.sum(mask) > 0:
+            if np.sum(mask) > 30:
                 lags.append(np.mean(dists[mask]))  # Distance moyenne
                 gammas.append(0.5 * np.mean(pH_diff[mask]))  # Variogramme
 
